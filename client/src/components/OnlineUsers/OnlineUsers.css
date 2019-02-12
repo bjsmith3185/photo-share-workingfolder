@@ -1,0 +1,70 @@
+
+.onlineuser-area {
+
+}
+
+.onlineuser-title {
+  margin-left: 50px;
+  font-size: 30px;
+  font-weight: bolder;
+  color: black;
+  margin-top: 50px;
+}
+
+.onlineuser-subtitle {
+  margin-left: 65px;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  margin-top: 20px;
+}
+.onlineuser-active {
+  margin-left: 5px;
+  height: 10px;
+  width: 10px;
+  background-color: green;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.onlineuser-inactive {
+  margin-left: 5px;
+  height: 10px;
+  width: 10px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+
+.allusers-elements {
+  margin-right: 10px;
+}
+
+.allusers-update {
+  color: blue;
+  font-weight: bold;
+}
+
+.allusers-delete {
+  color: red;
+  font-weight: bold;
+}
+
+.onlineuser-status-true {
+  margin-left: 10px;
+  height: 10px;
+  width: 10px;
+  background-color: green;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.onlineuser-status-false {
+  margin-left: 10px;
+  height: 10px;
+  width: 10px;
+  background-color:red;
+  border-radius: 50%;
+  display: inline-block;
+}
