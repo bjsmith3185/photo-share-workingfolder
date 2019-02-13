@@ -39,24 +39,11 @@
     padding-left: 3px;
 }
 
-/* .signin-help-btn {
-    font-size: 10px;
+.signin-help-btn {
+    font-size: 14px;
     color: blue;
     margin-left: 10px;
-} */
-
-
-
-
-
-.login-demo-area {
-    position: fixed;
-    top: 200px;
-    left: 50px;
-    width: 120px;
-    height: 90px;
-    border: 2px solid blue;
-    background: lightblue;
+    cursor: pointer;
 }
 
 

@@ -6,11 +6,16 @@ collections: users, pictures, comments, displayPictures(for each user)
 
 TODO
 
+*** if a picture is deleted from the app
+    --- a function needs to check each users favorties [] and remove that _id reference to avoid errors when the user tries to view favorites.
+
+    
+
 - styling for:
 
     * Landing page
         - need a lot of styling!
-        
+
     * Home page     
         - maybe pick a random picture or two to show on the screen with the users name.
 

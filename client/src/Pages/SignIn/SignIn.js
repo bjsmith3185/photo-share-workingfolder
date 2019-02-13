@@ -16,12 +16,24 @@ class SignIn extends Component {
     email: "",
     password: "",
     unscessful: false,
-
-    showHelp: false,
+   
   };
 
   componentDidMount() {
     sessionStorage.clear();
+  }
+
+  demo = () => {
+    this.setState({
+      email: "",
+      password: "",
+      name: ""
+
+    })
+    this.setState({
+      email: "brian@mail.com",
+      password: "123456"
+    })
   }
 
   login = (event) => {
@@ -74,7 +86,7 @@ class SignIn extends Component {
         <Navigation />
 
         <div className="signin-title-area text-center">
-        <span className="signin-title text-center">Sign In</span> <span className="signin-help-btn">Demo</span></div>
+        <span className="signin-title text-center">Sign In</span> <span className="signin-help-btn" onClick={this.demo}>Demo Login</span></div>
 
         {this.state.unscessful ? (
           <div className="login-incorrect text-center">Incorrect Login Attempt, Try Again</div>
@@ -105,13 +117,7 @@ class SignIn extends Component {
 
         </form>
 
-        <div className="login-demo-area">
-          <div>To test this app use:</div>
-          <div>email: brian@mail.com</div>
-          <div>password: 123456</div>
-
-        </div>
-
+      
       </div>
 
     )
