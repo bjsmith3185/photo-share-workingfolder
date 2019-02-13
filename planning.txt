@@ -6,8 +6,25 @@ collections: users, pictures, comments, displayPictures(for each user)
 
 TODO
 
-- yarn add react-modal
-    * setting it up for the modal
+- styling for:
+
+    * Landing page
+        - need a lot of styling!
+        
+    * Home page     
+        - maybe pick a random picture or two to show on the screen with the users name.
+
+    * Pictures page
+        - figure out how to get the title of the page above the pic navbar
+        - create a fixed size for the pic box
+
+    * My Profile page
+        - center the page title
+        - details on what the page is used for
+
+    * Admin page
+        - look into how to make the title a different color
+        - each tab needs some styling
 
     
 

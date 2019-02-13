@@ -5,9 +5,6 @@ import DeletePictureList from "../DeletePictureList";
 
 const RemovePicture = (props) => (
 
-
-
-
   <div>
 
     {props.removeMenu ? (
@@ -42,9 +39,9 @@ const RemovePicture = (props) => (
         <br />
         <DeletePictureList
           pictures={props.pictures}
-          confirmSelected={props.confirmSelected}
+          // confirmSelected={props.confirmSelected}
           selectPicDelete={props.selectPicDelete}
-          confirmSelectedPicDelete={props.confirmSelectedPicDelete}
+          // confirmSelectedPicDelete={props.confirmSelectedPicDelete}
           cancelDeletePic={props.cancelDeletePic}
 
         />

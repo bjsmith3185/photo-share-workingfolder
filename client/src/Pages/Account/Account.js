@@ -66,8 +66,8 @@ class Account extends Component {
 
     API.getUser(_id)
       .then(res => {
-        console.log("users info")
-        console.log(res.data)
+        // console.log("users info")
+        // console.log(res.data)
 
         if (res.data === null) {
           this.setState({
