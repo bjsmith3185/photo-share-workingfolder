@@ -5,7 +5,14 @@ database: pictureshare
 collections: users, pictures, comments, displayPictures(for each user)
 
 
+-the alert box works when you click delete on a picture
+ todo
+ * maybe use the html feature to add a button with an onlick to delete the picture
+ * make sure the close x button does not fire the delete button as well
+ * i can store the _id it state and use the function to detete that _id. if the alert box is closed by x then clear that _id in state.
 
+ - better yet figure out how to pass a funciton to the alert box.
+ 
 
 
 -----------------------------

@@ -12,6 +12,8 @@ import OnlineUsers from "../../components/OnlineUsers";
 import RemovePicture from '../../components/RemovePicture';
 import * as ROUTES from '../../constants/routes';
 
+import Alert from 'react-s-alert';
+
 
 
 
@@ -83,7 +85,19 @@ class Admin extends Component {
   // componentWillUnmount() {
 
   // }
-
+  openAlert = (e) => {
+    e.preventDefault();
+    // const customerName = 'Click To Delete Picture';
+    Alert.info('Click To Delete Picture', {
+      position: 'top-left',
+      onClose: function () {
+        console.log('onClose Fired!');
+    }
+      // customFields: {
+      //   message: "hello",
+      // }
+    });
+  }
 
 
   onChange = event => {
@@ -230,7 +244,7 @@ class Admin extends Component {
 
   confirmSelectedPicDelete = () => {
     console.log("confrim to delete pic")
-    alert("are you sure")
+    // confirm("are you sure")
     this.setState({
       confirmSelected: true,
     })
@@ -723,7 +737,10 @@ class Admin extends Component {
                 pictures={this.state.getAllPicturesToRemove}
                 confirmSelected={this.state.confirmSelected}
                 selectPicDelete={this.selectPicDelete}
+                
                 confirmSelectedPicDelete={this.confirmSelectedPicDelete}
+
+                openAlert={this.openAlert}
 
               />
             ) : (
