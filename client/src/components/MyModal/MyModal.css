@@ -1,20 +1,76 @@
 
+.myModal {
+  width: 400px;
+  height: 150px;
+  background: lightgray;
+  position: absolute;
+  margin-top: 100px;
+  margin-left: 50px;
+  border: 2px solid black;
+  border-radius: 6px;
 
-.background-area {
-  background:lightgray;
 }
 
-.form-input {
-  margin-left: 10px;
+
+.modal-close-btn {
+  margin-top: 5px;
+  float: right;
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: bolder;
+  color: blue;
 }
 
+.modal-close-btn:hover {
+  
+  color: rgb(68, 68, 248);
+}
 
-.form-title {
-  font-size: 30px;
+.modal-text1 {
+  clear: right;
+  margin-top: 25px;
+ 
+  font-size: 16px;
   font-weight: bold;
+  color: red;
 
 }
 
-.form-btn {
-  margin-top: 10px;
+.modal-text2 {
+  margin-top: 5px;
+ 
+  font-size: 16px;
+  font-weight: bold;
+  color: red;
+
 }
+
+.modal-button-area {
+  margin-top: 20px;
+ 
+}
+
+.modal-delete-btn {
+  font-weight: bold;
+  color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

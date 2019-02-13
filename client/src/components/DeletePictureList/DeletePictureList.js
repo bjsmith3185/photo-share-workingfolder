@@ -23,15 +23,13 @@ const DeletePictureList = (props) => (
           <div className="picturelist-toolbar">
             <div className="deletepic-name">{image.name}</div>
 
-            <div className="deletepic-btn" onClick={props.confirmSelectedPicDelete}>X</div>
+            {/* <div className="deletepic-btn" onClick={props.confirmSelectedPicDelete}>X</div> */}
 
           <MyModal 
           _id={image._id}
           selectPicDelete={props.selectPicDelete}
-          
+
             />
-
-
 
             {/* {props.confirmSelected ? (
               <div className="deletepic-btn" onClick={() => props.selectPicDelete(image._id)}>Delete</div>

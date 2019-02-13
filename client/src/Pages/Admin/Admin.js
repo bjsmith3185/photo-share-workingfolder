@@ -238,20 +238,20 @@ class Admin extends Component {
 
     console.log("this is the function to remove the picture: " + id)
 
-    // API.removeOnePicture(id)
-    //   .then((res) => {
-    //     console.log("removed a pictures")
-    //     // console.log(res.data)
-    //     this.setState({
-    //       confirmSelected: false,
-    //       value: "",
+    API.removeOnePicture(id)
+      .then((res) => {
+        console.log("removed a pictures")
+        // console.log(res.data)
+        this.setState({
+          confirmSelected: false,
+          value: "",
 
-    //     })
-    //     this.viewRemovePicture();
-    //   })
-    //   .catch(error => {
-    //     this.setState({ error });
-    //   });
+        })
+        this.viewRemovePicture();
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
   }
 
   getAllPicturesToRemove = () => {
