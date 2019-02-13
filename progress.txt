@@ -1,17 +1,24 @@
 
 currently:
 
+TODO
+
+- set up pictures model so it doenst make all pictures change from X to remove when deleting. 
+   *** or look at react-alert npm
+   
 
 
-added online status in admin page. (may add this if i add a chat function to the app)
+- modify the nav bar to include
+    * top nav
+    * signed in as...
+    * div to show the screen the user is currently on
 
------------------------------------
-admin vs account pages
+    
+- add better text to the home page
+- add a confirm or something when deleting users or pictures
 
-all users have an account page.
 
-if user.admin = true
-    - navbar show link to adminpage
+
 
 
 
