@@ -47,8 +47,6 @@ const RemovePicture = (props) => (
           confirmSelectedPicDelete={props.confirmSelectedPicDelete}
           cancelDeletePic={props.cancelDeletePic}
 
-          openAlert={props.openAlert}
-
         />
 
       </div>

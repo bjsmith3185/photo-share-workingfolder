@@ -3,18 +3,14 @@ import "./DeletePictureList.css";
 // import ExifOrientationImg from 'react-exif-orientation-img'
 import NoteInput from '../NoteInput';
 import ShowNotes from '../ShowNotes';
-
-import MyAlert from '../MyAlert';
-import 'react-s-alert/dist/s-alert-default.css';
 // import ViewSlideshowNav from '../ViewSlideshowNav';
+import MyModal from '../MyModal';
 
 const DeletePictureList = (props) => (
 
 
   <div>
     <div>Select a picture below to remove it from this app. Removing a picture is permanent.</div>
-
-    
 
     <button className="removepicture-btn-cancel" onClick={props.cancelDeletePic}>Cancel</button>
 
@@ -26,14 +22,21 @@ const DeletePictureList = (props) => (
 
           <div className="picturelist-toolbar">
             <div className="deletepic-name">{image.name}</div>
-            {/* <div className="deletepic-btn" onClick={props.openAlert}>X</div> */}
-            <MyAlert openAlert={props.openAlert} />
+
+            <div className="deletepic-btn" onClick={props.confirmSelectedPicDelete}>X</div>
+
+          <MyModal 
+          _id={image._id}
+          selectPicDelete={props.selectPicDelete}
+          
+            />
+
+
 
             {/* {props.confirmSelected ? (
               <div className="deletepic-btn" onClick={() => props.selectPicDelete(image._id)}>Delete</div>
             ) : (
                 <div className="deletepic-btn" onClick={props.confirmSelectedPicDelete}>X</div>
-           
               )} */}
 
           </div>
