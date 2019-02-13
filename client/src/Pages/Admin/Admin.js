@@ -12,10 +12,7 @@ import OnlineUsers from "../../components/OnlineUsers";
 import RemovePicture from '../../components/RemovePicture';
 import * as ROUTES from '../../constants/routes';
 
-// import { render } from 'react-dom'
-// import { Provider as AlertProvider } from 'react-alert'
-// import AlertTemplate from 'react-alert-template-basic'
-// import PictureNavbar from '../../components/PictureNavbar';
+
 
 
 
