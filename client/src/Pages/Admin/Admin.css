@@ -1,23 +1,36 @@
 
 
 
-/* .adminpage-header {
-    background: yellow;
-    padding: 4px;
+.modifyuser-area {
+    margin-top: 50px;
 
-    font-weight: bolder;
-    font-size: 35px;
+}
 
+.modifyuser-title {
+    font-size: 40px;
+    color: black;
+    font-weight: bold;
+}
 
-} */
+.modifyuser-form {
+    margin-top: 10px;
 
+}
 
+.modifyuser-label {
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+}
 
+.modifyuser-select {
+    margin-left: 10px;
+}
 
-
-
-
-
+.modifyuser-btn {
+    margin-top: 15px;
+    font-size: 16px;
+}
 
 
 

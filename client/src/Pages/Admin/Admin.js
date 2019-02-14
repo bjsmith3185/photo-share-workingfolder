@@ -616,6 +616,7 @@ class Admin extends Component {
                 {this.state.showUpdatingUser ? (
                   // Form to update selected user 
                   <div>
+    
                     <UpdateUser
                       viewUpdateUser={this.state.viewUpdateUser}
                       oldUsername={this.state.oldUsername}
@@ -631,12 +632,12 @@ class Admin extends Component {
                   </div>
                 ) : (
                     // Dropdown to select user to modify 
-                    <div>
-
-                      <form>
-                        <label>
+                    <div className="modifyuser-area text-center">
+                      <div className="modifyuser-title text-center">Modify User</div>
+                      <form className="modifyuser-form text-center">
+                        <label className="modifyuser-label">
                           Pick User to modify:
-                          <select value={this.state.value} onChange={this.handleChange}>
+                          <select className="modifyuser-select" value={this.state.value} onChange={this.handleChange}>
 
                             {this.state.allNames.map((name, i) => (
                               <option key={name._id} value={name._id}>{name.name}</option>
@@ -644,12 +645,12 @@ class Admin extends Component {
                             )}
                           </select>
                         </label>
+                        
                       </form>
 
-                      <div>To make changes click Continue.
-                        <button onClick={this.selectUser}>Continue</button>
-                      </div>
+                      <button className="modifyuser-btn" onClick={this.selectUser}>Continue</button>
 
+                      
                     </div>
                   )}
               </div>
