@@ -1,5 +1,33 @@
 
 
+.userinfo-area {
+  margin-top: 30px;
+
+}
+
+.userinfo-title {
+  font-size: 25px;
+  font-weight: bold;
+  color: blue;
+  text-decoration: underline;
+}
+
+.userinfo-form {
+  margin-top: 10px;
+  border-top: 2px solid black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 .userinfo-line {
   margin-top: 10px;
   margin-left: 20px;

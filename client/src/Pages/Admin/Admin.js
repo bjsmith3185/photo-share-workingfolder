@@ -6,7 +6,7 @@ import AddNewUser from '../../components/AddNewUser';
 import Navigation from '../../components/Navigation';
 import UserIdBar from '../../components/UserIdBar';
 import AdminNavbar from "../../components/AdminNavbar";
-import AllUsers from "../../components/AllUsers";
+// import AllUsers from "../../components/AllUsers";
 import UpdateUser from "../../components/UpdateUser";
 import OnlineUsers from "../../components/OnlineUsers";
 import RemovePicture from '../../components/RemovePicture';

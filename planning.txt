@@ -9,18 +9,14 @@ TODO
 *** if a picture is deleted from the app
     --- a function needs to check each users favorties [] and remove that _id reference to avoid errors when the user tries to view favorites.
 
-    
+*** add a forgot password function.
+    - need to think thru these steps....
+
 
 - styling for:
 
-    * Landing page
-        - need a lot of styling!
-
-    * Home page     
-        - maybe pick a random picture or two to show on the screen with the users name.
-
+    
     * Pictures page
-        - figure out how to get the title of the page above the pic navbar
         - create a fixed size for the pic box
 
     * My Profile page

@@ -4,14 +4,10 @@ import "./UserInfo.css";
 
 const UserInfo = (props) => (
 
-
-
   <div className="userinfo-area">
-    <div>Your Account Information.</div>
+    <div className="userinfo-title text-center">Your Account Information.</div>
 
-    <form>
-
-
+    <form className="userinfo-form text-center">
       <div className="userinfo-line" >Name: {props.name}.
 
       {props.showUpdateName ? (

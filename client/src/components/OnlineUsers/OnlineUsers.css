@@ -1,25 +1,25 @@
 
 .onlineuser-area {
-
-}
-
-.onlineuser-title {
-  margin-left: 50px;
-  font-size: 30px;
-  font-weight: bolder;
-  color: black;
   margin-top: 50px;
 }
 
+.onlineuser-title {
+  font-size: 40px;
+  font-weight: bolder;
+  color: black;
+  
+}
+
 .onlineuser-subtitle {
-  margin-left: 65px;
   font-size: 18px;
   font-weight: bold;
   color: black;
-  margin-top: 20px;
+  margin-top: 10px;
 }
+
 .onlineuser-active {
   margin-left: 5px;
+  margin-right: 5px;
   height: 10px;
   width: 10px;
   background-color: green;
@@ -36,20 +36,30 @@
   display: inline-block;
 }
 
-
-.allusers-elements {
-  margin-right: 10px;
-}
-
-.allusers-update {
-  color: blue;
+.onlineuser-count {
+  font-size: 18px;
   font-weight: bold;
+  color: black;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid black;
 }
 
-.allusers-delete {
-  color: red;
-  font-weight: bold;
+.onlineuser-list-area {
+  margin-top: 15px;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  list-style: none;
 }
+
+.onlineuser-elements {
+  font-size: 20px;
+  font-weight:bold;
+  color: black;
+}
+
+
 
 .onlineuser-status-true {
   margin-left: 10px;
