@@ -1,13 +1,9 @@
-# photo_share_mongo_auth
+# Smith Family Foto Share
 This repo contains updates and changes to the original version of photo-share
 
-Current updates:
-* email sent to new users containing username/pass
-* drop down to select users to remove or modify
-* remove pictures tab.  remove all / or select individual picture to remove
+To view this app deployed: 
 
 
-The original heroku deployed link is  https://morning-garden-46388.herokuapp.com/
 
 DETAILS OF APP
 
