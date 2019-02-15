@@ -1,4 +1,21 @@
 
+.removepicture-top-area {
+  margin-bottom: 10px;
+}
+
+
+.removepicture-title-top {
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.removepicture-subtitle {
+  font-size: 30px;
+  color: red;
+  font-weight: bolder;
+}
+
 
 
 .removepicture-image-area {
@@ -7,6 +24,20 @@
 
 }
 
+.removepicture-btn-cancel-top {
+  font-size: 16px;
+  margin-left: 15px;
+  background: blue;
+  color: white;
+  
+}
+
+.removepicture-btn-cancel-top:hover {
+  
+  background: rgb(50, 50, 247);
+  color: white;
+  
+}
 
 
 

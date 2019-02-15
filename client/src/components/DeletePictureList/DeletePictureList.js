@@ -4,11 +4,16 @@ import MyModal from '../MyModal';
 
 const DeletePictureList = (props) => (
 
-
   <div>
-    <div>Select a picture below to remove it from this app. Removing a picture is permanent.</div>
+    <div className="removepicture-top-area text-center">
+      <div className="removepicture-title-top">Select a picture below to remove it from this app.</div>
+      <div className="removepicture-subtitle">Removing a picture is permanent
+        <button className="removepicture-btn-cancel-top" onClick={props.cancelDeletePic}>Cancel</button>
+      </div>
+    </div>
 
-    <button className="removepicture-btn-cancel" onClick={props.cancelDeletePic}>Cancel</button>
+
+
 
     <div className="removepicture-image-area">
       {props.pictures.map(image => (
@@ -21,9 +26,9 @@ const DeletePictureList = (props) => (
 
             {/* <div className="deletepic-btn" onClick={props.confirmSelectedPicDelete}>X</div> */}
 
-          <MyModal 
-          _id={image._id}
-          selectPicDelete={props.selectPicDelete}
+            <MyModal
+              _id={image._id}
+              selectPicDelete={props.selectPicDelete}
 
             />
 

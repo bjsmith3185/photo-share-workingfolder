@@ -6,10 +6,11 @@ import DeletePictureList from "../DeletePictureList";
 const RemovePicture = (props) => (
 
   <div>
+    <div className="removepicture-title text-center">Remove Pictures</div>
 
     {props.removeMenu ? (
 
-      <div className="removepicture-menu-area">
+      <div className="removepicture-menu-area text-center">
         <div className="removepicture-menu-btn" onClick={props.menuDeleteAll}>Remove All Pictures</div>
         <div className="removepicture-menu-btn" onClick={props.menuRemoveSelectedPic}>Remove Selected Picture</div>
       </div>
@@ -19,12 +20,13 @@ const RemovePicture = (props) => (
       )}
 
     {props.removeAllPic ? (
-      <div className="removepicture-area">
+      <div className="removepicture-area text-center">
         <div className="removepicture-confirm">Click to confirm you want to remove all pictures from this app.
-        <button className="removepicture-btn-cancel" onClick={props.cancelDeletePic}>Cancel</button>
+        <button className="removepicture-btn-deleteAll" onClick={props.removeAllPictures}>Delete All Pictures</button>
         </div>
 
-        <button className="removepicture-btn-deleteAll" onClick={props.removeAllPictures}>Delete All Pictures</button>
+        <button className="removepicture-btn-cancel" onClick={props.cancelDeletePic}>Cancel</button>
+        
 
       </div>
     ) : (
@@ -32,11 +34,8 @@ const RemovePicture = (props) => (
       )}
 
     {props.removeSelectedPic ? (
-      <div className="removepicture-area">
-        
-
-        <br />
-        <br />
+      <div className="removepicture-area text-center">
+    
         <DeletePictureList
           pictures={props.pictures}
           // confirmSelected={props.confirmSelected}

@@ -43,7 +43,7 @@ class MyModal extends React.Component {
   render () {
     return (
       <div>
-        <div onClick={this.handleOpenModal}>Delete</div>
+        <div className="modal-onclick-btn" onClick={this.handleOpenModal}>Delete</div>
 
         <Modal 
            isOpen={this.state.showModal}

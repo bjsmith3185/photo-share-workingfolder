@@ -1,4 +1,12 @@
 
+
+.modal-onclick-btn {
+  color: red;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+
 .myModal {
   width: 400px;
   height: 150px;

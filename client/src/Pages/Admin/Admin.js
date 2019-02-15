@@ -663,12 +663,16 @@ class Admin extends Component {
 
             {this.state.showDeleteUser ? (
               // Dropdown to select user to delete 
-              <div>
-
-                <form>
-                  <label>
-                    Pick User to remove from this app:
-                  <select value={this.state.value} onChange={this.handleChange}>
+              <div className="deleteuser-area text center">
+                <div className="deleteuser-title text-center">Delete User from App.</div>
+                <form className="deleteuser-form text-center">
+                  <label className="deleteuser-label-title">
+                    Pick User to remove from Photo Share.
+                  <select 
+                    className="deleteuser-select"
+                    value={this.state.value} 
+                    onChange={this.handleChange}
+                    >
 
                       {this.state.allNames.map((name, i) => (
                         <option key={name._id} value={name._id}>{name.name}</option>
@@ -678,18 +682,22 @@ class Admin extends Component {
                   </label>
                 </form>
 
-
+                <div className="deleteuser-buttons text-center">
                 {this.state.confirmDelete ? (
-                  <div>Confirm you would like to remove {this.state.removeName} from this application permantly. <button onClick={this.cancelRemove}>Cancel</button><button onClick={this.confirmRemoveUser}>Delete User</button>
+                  <div>
+                  <div>Confirm you would like to remove 
+                    <span className="deleteuser-confirm-name">{this.state.removeName}</span> 
+                    from this application permantly. <button className="deleteuser-confirm-btn" onClick={this.confirmRemoveUser}>Delete User</button>
                   </div>
-
+                  <button className="deleteuser-cancel-btn" onClick={this.cancelRemove}>Cancel</button>
+                    </div>
                 ) : (
 
                     <div>To remove user click Continue.
-                    <button onClick={this.removeUser}>Continue</button>
+                    <button className="deleteuser-continue-btn" onClick={this.removeUser}>Continue</button>
                     </div>
                   )}
-
+                </div>
               </div>
             ) : (
                 <div></div>

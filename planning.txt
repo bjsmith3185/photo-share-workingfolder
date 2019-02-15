@@ -8,6 +8,12 @@ TODO
 
 *** if a picture is deleted from the app
     --- a function needs to check each users favorties [] and remove that _id reference to avoid errors when the user tries to view favorites.
+    - may be able to do this by comparing _id's and if the users fav does not match a pic in the picture collection that entry is skipped.
+
+*** maybe use images for some of the links
+        - for remove pictures, a single image or three images..
+
+*** add a setTimeout to the delete user tab under admin.
 
 *** add a forgot password function.
     - need to think thru these steps....
