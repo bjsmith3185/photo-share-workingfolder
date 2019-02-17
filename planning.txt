@@ -6,6 +6,13 @@ collections: users, pictures, comments, displayPictures(for each user)
 
 TODO
 
+*** Update signup/login email to lowercase, password to (string, lowercase would not allow for security)
+
+
+*** Image box
+    - work on image box size so it doesnt change when notes are added
+    - update or remove rotate button.
+
 *** if a picture is deleted from the app
     --- a function needs to check each users favorties [] and remove that _id reference to avoid errors when the user tries to view favorites.
     - may be able to do this by comparing _id's and if the users fav does not match a pic in the picture collection that entry is skipped.
@@ -13,10 +20,14 @@ TODO
 *** maybe use images for some of the links
         - for remove pictures, a single image or three images..
 
-*** add a setTimeout to the delete user tab under admin.
+*** add modal to confirm delete all pictures 
+
+*** add modal to delete user
+        *** add a setTimeout to the delete user tab under admin.
 
 *** add a forgot password function.
-    - need to think thru these steps....
+    - add a function to allow the user to answer a security question the first time they log in.
+    - add a function to randomly select a security question to display and answer.
 
 
 - styling for:

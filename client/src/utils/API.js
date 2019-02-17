@@ -57,6 +57,10 @@ export default {
     return axios.get("/api/users/" + _id)
   },
 
+  getUserByEmail: function (email) {
+    return axios.get("/api/users/email/" + email)
+  },
+
   addToFavorites: function (name, id) {
     // console.log("api: " + name + ":" + id)
     return axios.put("/api/users/favorites/" + name, id);

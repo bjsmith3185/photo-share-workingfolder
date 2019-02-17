@@ -1,0 +1,54 @@
+
+TODOs
+
+
+** Welcome Page
+    - logo or something
+    - random internet images?
+
+** Signin Page
+    - logo or some image
+
+
+** Home Page
+    - randomly show a saved image on an interval
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

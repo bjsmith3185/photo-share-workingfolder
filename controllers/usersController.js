@@ -51,6 +51,13 @@ module.exports = {
       .findOne({ name: name })
   },
 
+  findByEmail: function (email) {
+    console.log("find by email controller" )
+    console.log(email)
+    return db.Users
+      .findOne({ email: email })
+  },
+
   create: function (data) {
     console.log("!!!")
     console.log(data)

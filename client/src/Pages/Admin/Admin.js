@@ -141,9 +141,10 @@ class Admin extends Component {
   addUser = (event) => {
     event.preventDefault();
 
+    // lowercase
     let newUser = {
       name: this.state.username,
-      email: this.state.useremail,
+      email: this.state.useremail.toLowerCase(),
 
     }
 
