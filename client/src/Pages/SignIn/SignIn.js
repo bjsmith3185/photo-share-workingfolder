@@ -23,6 +23,7 @@ class SignIn extends Component {
     showForgotPassword: false,
     showSecretQuestionForm: false,
     showEmailPasswordForm: false,
+    showAnswerSecretQuestion: false,
 
 
     forgotEmail: "",
@@ -66,8 +67,10 @@ class SignIn extends Component {
     API.login(this.state.email.toLowerCase(), data)
       .then(res => {
 
+        console.log(res.data)
+
         this.setState({
-          email: "",
+          // email: "",
           password: "",
         })
 
@@ -78,14 +81,61 @@ class SignIn extends Component {
         } else {
           // console.log(res.data._id)
           sessionStorage.setItem("_id", res.data._id);
-          this.setState({
-            unsuccessful: false
-          })
-          this.pageRedirect();
+          if (res.data.secretQuestionCompleted === false) {
+            this.setState({
+              unsuccessful: false,
+              showAnswerSecretQuestion: true,
+
+            })
+
+
+          } else {
+            this.pageRedirect();
+          }
+
+
         }
       })
       .catch(err => console.log(err));
   };
+
+  // login = (event) => {
+  //   console.log("logging in to app")
+  //   sessionStorage.clear();
+  //   event.preventDefault();
+
+  //   // tostring
+  //   let data = {
+  //     password: this.state.password.toString()
+  //   }
+
+  //   console.log(this.state.email.toLowerCase())
+  //   console.log(data)
+  //   // lowercase
+  //   API.login(this.state.email.toLowerCase(), data)
+  //     .then(res => {
+
+  //       this.setState({
+  //         email: "",
+  //         password: "",
+  //       })
+
+  //       if (res.data === null) {
+  //         this.setState({
+  //           unsuccessful: true
+  //         })
+  //       } else {
+  //         // console.log(res.data._id)
+  //         sessionStorage.setItem("_id", res.data._id);
+  //         this.setState({
+  //           unsuccessful: false
+  //         })
+
+  //         this.pageRedirect();
+  //       }
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
   pageRedirect = () => {
     this.props.history.push(ROUTES.HOME);
@@ -186,65 +236,85 @@ class SignIn extends Component {
         <Navigation />
 
 
-        {this.state.showLogInForm ? (
+        <div className="signin-secretQuestion text-center">
 
-          <div>
+          {this.state.showAnswerSecretQuestion ? (
+            <div>
 
-            <div className="signin-title-area text-center">
-              <span className="signin-title text-center">Sign In</span> <span className="signin-help-btn" onClick={this.demo}>Demo Login</span></div>
+              show form to select a secret questin and anser it 
 
-            {this.state.unsuccessful ? (
-              <div className="login-incorrect text-center">Incorrect Login Attempt, Try Again</div>
-            ) : (
+            </div>
+          ) : (
+              <div>
 
-                <div className="login-text text-center">Enter you information Below</div>
-              )}
+                {this.state.showLogInForm ? (
 
+                  <div>
 
-            <form className="login-form text-center">
-              <input className="login-form-input"
-                value={this.state.email}
-                name="email"
-                onChange={this.onChange}
-                type="text"
-                placeholder="email"
-              />
-              <br />
-              <input className="login-form-input2"
-                value={this.state.password}
-                name="password"
-                onChange={this.onChange}
-                type="password"
-                placeholder="password"
-              />
-              <br />
-              <button className="form-btn btn btn-info" onClick={this.login}>LogIn</button>
+                    <div className="signin-title-area text-center">
+                      <span className="signin-title text-center">Sign In</span> <span className="signin-help-btn" onClick={this.demo}>Demo Login</span></div>
 
-            </form>
+                    {this.state.unsuccessful ? (
+                      <div className="login-incorrect text-center">Incorrect Login Attempt, Try Again</div>
+                    ) : (
+
+                        <div className="login-text text-center">Enter you information Below</div>
+                      )}
 
 
-          </div>
+                    <form className="login-form text-center">
+                      <input className="login-form-input"
+                        value={this.state.email}
+                        name="email"
+                        onChange={this.onChange}
+                        type="text"
+                        placeholder="email"
+                      />
+                      <br />
+                      <input className="login-form-input2"
+                        value={this.state.password}
+                        name="password"
+                        onChange={this.onChange}
+                        type="password"
+                        placeholder="password"
+                      />
+                      <br />
+                      <button className="form-btn btn btn-info" onClick={this.login}>LogIn</button>
 
-        ) : (
-            <div></div>
-          )}
+                    </form>
 
-        <ForgotPassword
-          viewForgotPassword={this.viewForgotPassword}
-          showForgotPasswordLink={this.state.showForgotPasswordLink}
-          forgotEmail={this.state.forgotEmail}
-          onChange={this.onChange}
-          viewSignInForm={this.viewSignInForm}
-          submitEmail={this.submitEmail}
-          secretQuestion={this.state.secretQuestion}
-          submitAnswer={this.submitAnswer}
-          secretAnswer={this.state.secretAnswer}
-          usersAnswer={this.state.usersAnswer}
-          showSecretQuestionForm={this.state.showSecretQuestionForm}
-          showEmailPasswordForm={this.state.showEmailPasswordForm}
-          welcomePage={this.welcomePage}
-        />
 
+                  </div>
+
+                ) : (
+                    <div></div>
+                  )}
+
+                <ForgotPassword
+                  viewForgotPassword={this.viewForgotPassword}
+                  showForgotPasswordLink={this.state.showForgotPasswordLink}
+                  forgotEmail={this.state.forgotEmail}
+                  onChange={this.onChange}
+                  viewSignInForm={this.viewSignInForm}
+                  submitEmail={this.submitEmail}
+                  secretQuestion={this.state.secretQuestion}
+                  submitAnswer={this.submitAnswer}
+                  secretAnswer={this.state.secretAnswer}
+                  usersAnswer={this.state.usersAnswer}
+                  showSecretQuestionForm={this.state.showSecretQuestionForm}
+                  showEmailPasswordForm={this.state.showEmailPasswordForm}
+                  welcomePage={this.welcomePage}
+                />
+
+
+              </div>
+            )}
+
+
+
+
+
+        </div>
       </div>
     )
   };

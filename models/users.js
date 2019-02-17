@@ -9,6 +9,7 @@ const UsersSchema = new Schema({
   admin: {type: Boolean, default: false},
   secretQuestion : {type: String},
   secretAnswer: {type: String},
+  secretQuestionCompleted: {type: Boolean, default: false},
  
   favorites: [
     {
