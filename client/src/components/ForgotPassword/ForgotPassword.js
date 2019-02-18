@@ -26,19 +26,17 @@ const ForgotPassword = (props) => (
 
               <div className="forgotpassword-area text-center">
 
+                <div className="forgotpassword-form-title">Forgot Password Form</div>
+
+                <div className="forgotpassword-back" onClick={props.viewSignInForm}>Back to Sign In Form</div>
+
                 <div>
-
-                  <div className="forgotpassword-back" onClick={props.viewSignInForm}>Back to Sign In Form</div>
-                  <br />
-                  <br />
-
-                  <div className="forgotpassword-form-title">Forgot Password Form.</div>
 
                   {props.showSecretQuestionForm ? (
                     <div>
-                      <div className="secretquestion-title text-center">Please answer your secret question</div>
+                      <div className="secretquestion-title text-center">Enter your answer below</div>
 
-                      <form>
+                      <form className="secretquestion-area">
 
                         <label className="secretquestion-label">{props.secretQuestion}</label>
                         <input
@@ -55,11 +53,19 @@ const ForgotPassword = (props) => (
 
                       </form>
 
+                      {props.showWrongAnswerMsg ? (
+                        <div className="secretquestion-wrong text-center">
+                          Incorrect answer
+                        </div>
+                      ) : (
+                        <div></div>
+                      )}
+
 
                     </div>
                   ) : (
                       <div>
-                        <form>
+                        <form className="forgotpassword-email-form-area">
 
                           <label className="forgotpassword-email-label">Enter your email.</label>
                           <input
@@ -71,8 +77,7 @@ const ForgotPassword = (props) => (
                             type="text"
                           />
 
-                          <button className="forgotpassword-submit-email" onClick={props.submitEmail}>Submit</button>
-
+                          <button className="forgotpassword-submit-email-btn" onClick={props.submitEmail}>Submit</button>
 
                         </form>
 

@@ -14,6 +14,7 @@ class SignIn extends Component {
 
   state = {
     adminTrue: false,
+    _id: "",
     name: "",
     email: "",
     password: "",
@@ -25,6 +26,7 @@ class SignIn extends Component {
     showSecretQuestionForm: false,
     showEmailPasswordForm: false,
     showAnswerSecretQuestion: false,
+    showWrongAnswerMsg: false,
 
 
     forgotEmail: "",
@@ -68,12 +70,12 @@ class SignIn extends Component {
       password: this.state.password.toString()
     }
 
-    console.log(this.state.email.toLowerCase())
-    console.log(data)
+    // console.log(this.state.email.toLowerCase())
+    // console.log(data)
     // lowercase
     API.login(this.state.email.toLowerCase(), data)
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
 
         // this.setState({
         //   // email: "",
@@ -99,8 +101,8 @@ class SignIn extends Component {
             API.getSecretQuestions()
               .then(res => {
 
-                console.log("return from getting all security questions");
-                console.log(res.data)
+                // console.log("return from getting all security questions");
+                // console.log(res.data)
                 this.setState({
                   questions: res.data,
                   value: res.data[0],
@@ -115,43 +117,7 @@ class SignIn extends Component {
       .catch(err => console.log(err));
   };
 
-  // login = (event) => {
-  //   console.log("logging in to app")
-  //   sessionStorage.clear();
-  //   event.preventDefault();
 
-  //   // tostring
-  //   let data = {
-  //     password: this.state.password.toString()
-  //   }
-
-  //   console.log(this.state.email.toLowerCase())
-  //   console.log(data)
-  //   // lowercase
-  //   API.login(this.state.email.toLowerCase(), data)
-  //     .then(res => {
-
-  //       this.setState({
-  //         email: "",
-  //         password: "",
-  //       })
-
-  //       if (res.data === null) {
-  //         this.setState({
-  //           unsuccessful: true
-  //         })
-  //       } else {
-  //         // console.log(res.data._id)
-  //         sessionStorage.setItem("_id", res.data._id);
-  //         this.setState({
-  //           unsuccessful: false
-  //         })
-
-  //         this.pageRedirect();
-  //       }
-  //     })
-  //     .catch(err => console.log(err));
-  // };
 
   pageRedirect = () => {
     this.props.history.push(ROUTES.HOME);
@@ -179,20 +145,26 @@ class SignIn extends Component {
 
   submitEmail = (event) => {
     event.preventDefault();
-    console.log("clicked submit email")
+    // console.log("clicked submit email")
 
     API.getUserByEmail(this.state.forgotEmail)
       .then(res => {
-        console.log("return from checking if email exists");
+        // console.log("return from checking if email exists");
 
         if (res.data === null) {
           console.log("does not match")
+          this.welcomePage();
+
+
         } else {
-          console.log(res.data)
+          // console.log(res.data)
           this.setState({
             showSecretQuestionForm: true,
             secretAnswer: res.data.secretAnswer,
             secretQuestion: res.data.secretQuestion,
+            _id: res.data._id,
+            email: res.data.email,
+            password: res.data.password,
           })
         }
       })
@@ -201,25 +173,55 @@ class SignIn extends Component {
 
   submitAnswer = (event) => {
     event.preventDefault();
-    console.log("clicked submit answer")
-    console.log(this.state.usersAnswer)
+    // console.log("clicked submit answer")
+    // console.log(this.state.usersAnswer)
 
     if (this.state.usersAnswer.toLowerCase() === this.state.secretAnswer.toLowerCase()) {
-      console.log("correct answer")
+      // console.log("correct answer")
       // log user into app......
+      sessionStorage.setItem("_id", this.state._id);
+      let data = {
+        password: this.state.password.toString()
+      }
+      API.login(this.state.email.toLowerCase(), data)
+        .then(res => {
+          // console.log(res.data)
+          this.pageRedirect();
+        })
+        .catch(err => console.log(err));
+
+
     } else {
       console.log("wrong answer")
-      console.log(this.state.count)
+      // console.log(this.state.count)
       if (this.state.count < 1) {
         this.setState({
           usersAnswer: "",
-          count: this.state.count + 1
+          count: this.state.count + 1,
+          showWrongAnswerMsg: true,
         })
       } else {
         console.log("too many tries")
+
+        // need to add a function to email user their password
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
         this.setState({
           usersAnswer: "",
           showEmailPasswordForm: true,
+          showWrongAnswerMsg: false,
         })
       }
     }
@@ -280,7 +282,6 @@ class SignIn extends Component {
                 usersAnswer={this.state.usersAnswer}
                 onChange={this.onChange}
 
-
               />
 
             </div>
@@ -329,23 +330,24 @@ class SignIn extends Component {
                 ) : (
                     <div></div>
                   )}
-
-                <ForgotPassword
-                  viewForgotPassword={this.viewForgotPassword}
-                  showForgotPasswordLink={this.state.showForgotPasswordLink}
-                  forgotEmail={this.state.forgotEmail}
-                  onChange={this.onChange}
-                  viewSignInForm={this.viewSignInForm}
-                  submitEmail={this.submitEmail}
-                  secretQuestion={this.state.secretQuestion}
-                  submitAnswer={this.submitAnswer}
-                  secretAnswer={this.state.secretAnswer}
-                  usersAnswer={this.state.usersAnswer}
-                  showSecretQuestionForm={this.state.showSecretQuestionForm}
-                  showEmailPasswordForm={this.state.showEmailPasswordForm}
-                  welcomePage={this.welcomePage}
-                />
-
+                <div className="signin-fgt-area">
+                  <ForgotPassword
+                    viewForgotPassword={this.viewForgotPassword}
+                    showForgotPasswordLink={this.state.showForgotPasswordLink}
+                    forgotEmail={this.state.forgotEmail}
+                    onChange={this.onChange}
+                    viewSignInForm={this.viewSignInForm}
+                    submitEmail={this.submitEmail}
+                    secretQuestion={this.state.secretQuestion}
+                    submitAnswer={this.submitAnswer}
+                    secretAnswer={this.state.secretAnswer}
+                    usersAnswer={this.state.usersAnswer}
+                    showSecretQuestionForm={this.state.showSecretQuestionForm}
+                    showEmailPasswordForm={this.state.showEmailPasswordForm}
+                    welcomePage={this.welcomePage}
+                    showWrongAnswerMsg={this.state.showWrongAnswerMsg}
+                  />
+                </div>
 
               </div>
             )}
