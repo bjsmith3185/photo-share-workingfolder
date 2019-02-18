@@ -68,6 +68,8 @@ module.exports = {
 
 
   update: function (name, data) {
+    console.log("############3")
+    console.log(data)
     return db.Users
       .findOneAndUpdate({ name: name }, data, { upsert: true })
   },

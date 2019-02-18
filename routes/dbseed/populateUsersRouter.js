@@ -9,8 +9,8 @@ const adminSeedArray = [
         name: "brian smith",
         admin: true,
         email: "brian@mail.com",
-        secretQuestion: "What is your favorite pet",
-        secretAnswer: "dog"
+        // secretQuestion: "What is your favorite pet",
+        // secretAnswer: "dog"
         // password: "123456",
     },
 

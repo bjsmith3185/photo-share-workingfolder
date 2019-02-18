@@ -34,11 +34,7 @@ class SignIn extends Component {
     count: 0,
 
     value: "",
-    questions: [
-      "What is your favorite pet?",
-      "In what city were you born?",
-      
-  ],
+    questions: [],
 
   };
 
@@ -63,6 +59,9 @@ class SignIn extends Component {
     console.log("logging in to app")
     sessionStorage.clear();
     event.preventDefault();
+    this.setState({
+      password: "",
+    })
 
     // tostring
     let data = {
@@ -74,13 +73,12 @@ class SignIn extends Component {
     // lowercase
     API.login(this.state.email.toLowerCase(), data)
       .then(res => {
-
         console.log(res.data)
 
-        this.setState({
-          // email: "",
-          password: "",
-        })
+        // this.setState({
+        //   // email: "",
+        //   password: "",
+        // })
 
         if (res.data === null) {
           this.setState({
@@ -93,26 +91,25 @@ class SignIn extends Component {
             this.setState({
               unsuccessful: false,
               showAnswerSecretQuestion: true,
+              name: res.data.name,
 
             })
 
             // function to get the secret questions array
             API.getSecretQuestions()
-            .then(res => {
+              .then(res => {
 
-              console.log("return from getting all security questions");
-              console.log(res.data)
-      
-             
-      
-            })
-            .catch(err => console.log(err));
-
+                console.log("return from getting all security questions");
+                console.log(res.data)
+                this.setState({
+                  questions: res.data,
+                  value: res.data[0],
+                })
+              })
+              .catch(err => console.log(err));
           } else {
             this.pageRedirect();
           }
-
-
         }
       })
       .catch(err => console.log(err));
@@ -161,7 +158,7 @@ class SignIn extends Component {
   };
 
   onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value.trim() });
   };
 
   viewForgotPassword = () => {
@@ -186,7 +183,6 @@ class SignIn extends Component {
 
     API.getUserByEmail(this.state.forgotEmail)
       .then(res => {
-
         console.log("return from checking if email exists");
 
         if (res.data === null) {
@@ -197,10 +193,8 @@ class SignIn extends Component {
             showSecretQuestionForm: true,
             secretAnswer: res.data.secretAnswer,
             secretQuestion: res.data.secretQuestion,
-
           })
         }
-
       })
       .catch(err => console.log(err));
   };
@@ -210,35 +204,25 @@ class SignIn extends Component {
     console.log("clicked submit answer")
     console.log(this.state.usersAnswer)
 
-    if (this.state.usersAnswer === this.state.secretAnswer) {
+    if (this.state.usersAnswer.toLowerCase() === this.state.secretAnswer.toLowerCase()) {
       console.log("correct answer")
       // log user into app......
     } else {
-
       console.log("wrong answer")
       console.log(this.state.count)
-
       if (this.state.count < 1) {
-
         this.setState({
           usersAnswer: "",
           count: this.state.count + 1
         })
-
       } else {
         console.log("too many tries")
         this.setState({
           usersAnswer: "",
           showEmailPasswordForm: true,
-
         })
-
       }
-
-
     }
-
-
   };
 
   welcomePage = () => {
@@ -247,22 +231,30 @@ class SignIn extends Component {
 
   handleChange = (e) => {
     // console.log("in handlechange()")
-    this.setState({ value: e.target.value });
+    this.setState({ value: e.target.value.trim().toLowerCase() });
   };
 
   submitQuestionAndAnswer = (event) => {
-    console.log(this.state.value)
+    // console.log(this.state.value)
     event.preventDefault();
     let data = {
       secretQuestion: this.state.value,
       secretAnswer: this.state.userAnswer,
+      secretQuestionCompleted: true,
     }
-    console.log("users Q and A: ")
-    console.log(data)
-    // this.setState({
-    //   showUpdatingUser: true,
-    // })
-    // this.updateUser(this.state.value)
+    // console.log("users Q and A: ")
+    // console.log(data)
+
+    API.updateUser(this.state.name, data)
+      .then(res => {
+
+        // console.log("return from updating users info with security q and a");
+        // console.log(res.data)
+
+        this.pageRedirect();
+
+      })
+      .catch(err => console.log(err));
   };
 
 

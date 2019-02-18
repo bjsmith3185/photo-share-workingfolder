@@ -152,6 +152,8 @@ router.route("/id/:id")
 
 router.route("/:name")
   .put((req, res) => {
+    console.log("!!!!!!!!!!!!!!!!!!!!!!")
+    console.log(req.body)
     users.update(req.params.name, req.body)
       .then(dbresults => res.json(dbresults))
       .catch(err => res.status(422).json(err))
