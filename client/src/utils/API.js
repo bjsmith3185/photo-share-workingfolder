@@ -12,6 +12,9 @@ export default {
     return axios.post("/populate/pictures");
   },
 
+  getSecretQuestions: function () {
+     return axios.get('/system/questions')
+  },
 
 
   // route /api/user/login

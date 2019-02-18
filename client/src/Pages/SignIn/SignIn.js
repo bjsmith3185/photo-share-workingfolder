@@ -5,6 +5,7 @@ import "./SignIn.css";
 import * as ROUTES from '../../constants/routes';
 import Navigation from '../../components/Navigation';
 import ForgotPassword from '../../components/ForgotPassword'
+import AnswerSecretQuestion from '../../components/AnswerSecretQuestion';
 // import AllUsers from "../../components/AllUsers";
 
 
@@ -31,6 +32,13 @@ class SignIn extends Component {
     secretAnswer: "",
     usersAnswer: "",
     count: 0,
+
+    value: "",
+    questions: [
+      "What is your favorite pet?",
+      "In what city were you born?",
+      
+  ],
 
   };
 
@@ -88,6 +96,17 @@ class SignIn extends Component {
 
             })
 
+            // function to get the secret questions array
+            API.getSecretQuestions()
+            .then(res => {
+
+              console.log("return from getting all security questions");
+              console.log(res.data)
+      
+             
+      
+            })
+            .catch(err => console.log(err));
 
           } else {
             this.pageRedirect();
@@ -226,6 +245,26 @@ class SignIn extends Component {
     this.props.history.push(ROUTES.LANDING);
   };
 
+  handleChange = (e) => {
+    // console.log("in handlechange()")
+    this.setState({ value: e.target.value });
+  };
+
+  submitQuestionAndAnswer = (event) => {
+    console.log(this.state.value)
+    event.preventDefault();
+    let data = {
+      secretQuestion: this.state.value,
+      secretAnswer: this.state.userAnswer,
+    }
+    console.log("users Q and A: ")
+    console.log(data)
+    // this.setState({
+    //   showUpdatingUser: true,
+    // })
+    // this.updateUser(this.state.value)
+  };
+
 
   render = () => {
 
@@ -241,7 +280,16 @@ class SignIn extends Component {
           {this.state.showAnswerSecretQuestion ? (
             <div>
 
-              show form to select a secret questin and anser it 
+              <AnswerSecretQuestion
+                value={this.state.value}
+                questions={this.state.questions}
+                submitQuestionAndAnswer={this.submitQuestionAndAnswer}
+                handleChange={this.handleChange}
+                usersAnswer={this.state.usersAnswer}
+                onChange={this.onChange}
+
+
+              />
 
             </div>
           ) : (
