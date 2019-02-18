@@ -212,18 +212,9 @@ class SignIn extends Component {
         API.emailSinglePassword(data)
         .then(res => {
           console.log(res.data)
-          setTimeout(this.welcomePage, 3000);
+          setTimeout(this.welcomePage, 5000);
         })
         .catch(err => console.log(err));
-
-
-
-
-
-
-
-
-
 
 
         this.setState({

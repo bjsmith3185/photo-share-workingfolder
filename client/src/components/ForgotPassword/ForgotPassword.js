@@ -12,7 +12,7 @@ const ForgotPassword = (props) => (
         <div className="emailpassword-title text-center">
           An Email has been sent to<span className="emailpassword-email">{props.forgotEmail}</span> with your password.
       </div>
-        <button className="emailpassword-ok-btn" onClick={props.welcomePage}>Welcome Page</button>
+        {/* <button className="emailpassword-ok-btn" onClick={props.welcomePage}>Welcome Page</button> */}
 
       </div>
 
