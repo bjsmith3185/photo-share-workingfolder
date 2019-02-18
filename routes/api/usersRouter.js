@@ -29,7 +29,7 @@ router.route("/online")
       .catch(err => res.status(422).json(err))
   });
 
-  router.route("/email/:email")
+router.route("/email/:email")
   .get((req, res) => {
     console.log("inside find userby email route")
     users.findByEmail(req.params.email)
@@ -47,7 +47,7 @@ router.route("/new")
   .post((req, res) => {
     console.log("!!!!!!!!!!!")
     console.log(req.body)
-   
+
     users.create(req.body)
       .then(dbresults => {
         // console.log("getting ready to send email ")
@@ -184,7 +184,6 @@ router.route("/:id")
       .then(dbresults => res.json(dbresults))
       .catch(err => res.status(422).json(err))
   });
-
 
 
 

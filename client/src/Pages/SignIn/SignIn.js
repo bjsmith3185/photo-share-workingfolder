@@ -165,6 +165,7 @@ class SignIn extends Component {
             _id: res.data._id,
             email: res.data.email,
             password: res.data.password,
+            name: res.data.name,
           })
         }
       })
@@ -204,6 +205,16 @@ class SignIn extends Component {
         console.log("too many tries")
 
         // need to add a function to email user their password
+        let data = {
+          password: this.state.password,
+          email: this.state.email
+        }
+        API.emailSinglePassword(data)
+        .then(res => {
+          console.log(res.data)
+          setTimeout(this.welcomePage, 3000);
+        })
+        .catch(err => console.log(err));
 
 
 
@@ -215,9 +226,6 @@ class SignIn extends Component {
 
 
 
-
-
-        
         this.setState({
           usersAnswer: "",
           showEmailPasswordForm: true,

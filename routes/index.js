@@ -2,7 +2,7 @@ const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
 const populateRoutes = require("./dbseed");
-const systemRoutes = require("../system/setSecretQuestion");
+const systemRoutes = require("../system");
 
 
 // API Routes

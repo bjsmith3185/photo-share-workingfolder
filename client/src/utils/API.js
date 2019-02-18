@@ -12,9 +12,18 @@ export default {
     return axios.post("/populate/pictures");
   },
 
+
+
   getSecretQuestions: function () {
      return axios.get('/system/questions')
   },
+
+  emailSinglePassword: function (data) {
+    // console.log(data)
+    return axios.put("/system/password", data);
+  },
+
+
 
 
   // route /api/user/login
@@ -79,9 +88,7 @@ export default {
     return axios.delete("/api/users/" + id);
   },
 
-
-
-
+ 
 
 
   // route /api/pictures
