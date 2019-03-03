@@ -14,7 +14,15 @@ TODOs
     - randomly show a saved image on an interval
 
 
+-------------------------------------
 
+Responsive pages
+
+* Welcome: good
+* Sign In: good
+* Forgot Password: good
+* Home:
+    - Navbar: working
 
 
 
