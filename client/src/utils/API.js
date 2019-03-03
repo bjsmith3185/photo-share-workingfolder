@@ -3,57 +3,49 @@ import axios from "axios";
 
 export default {
 
-  //  route /populate/....
+  // =========== route /populate/....
+
   populateUsers: function () {
     return axios.post("/populate/users");
   },
 
-  removePicures: function () {
-    return axios.post("/populate/pictures");
+ 
+  // =========== route /system/....
+
+  getdisplayPicturesAll: function (id) {
+    console.log("client side api" + id)
+     return axios.get("/api/system/displaypictures/all/" + id)
   },
 
-
+  getdisplayPicturesFav: function (id) {
+    return axios.get("/api/system/displaypictures/fav/" + id)
+  },
 
   getSecretQuestions: function () {
-     return axios.get('/system/questions')
-  },
+    return axios.get('/system/questions')
+ },
 
-  emailSinglePassword: function (data) {
-    // console.log(data)
-    return axios.put("/system/password", data);
-  },
-
-
+ emailSinglePassword: function (data) {
+  // console.log(data)
+  return axios.put("/system/password", data);
+},
 
 
-  // route /api/user/login
-  login: function (email, data) {
-    return axios.put("/api/users/login/" + email, data)
-  },
+  // =========== route /api/user/....
 
-
-  // route /api/users
   getAllUsers: function () {
     return axios.get("/api/users");
   },
 
-  getOnlineUsers: function () {
-    return axios.get("/api/users/online");
+  getUser: function (_id) {
+    return axios.get("/api/users/" + _id)
   },
 
   addUser: function (data) {
-    console.log(data)
     return axios.post("/api/users/new", data);
   },
 
-  updateUser: function (name, data) {
-    return axios.put("/api/users/" + name, data)
-  },
-
   updateUserById: function (id, data) {
-    // console.log("api")
-    // console.log(id);
-    // console.log(data)
     return axios.put("/api/users/id/" + id, data)
   },
 
@@ -61,127 +53,136 @@ export default {
     return axios.put("/api/users/signout/" + id)
   },
 
-  updateUserByEmail: function (email, data) {
-    return axios.put("/api/users/email/" + email, data)
+  login: function (email, data) {
+    return axios.put("/api/users/login/" + email, data)
+  }, 
+
+  updateUser: function (name, data) {
+    return axios.put("/api/users/" + name, data)
   },
 
-  getUser: function (_id) {
-    return axios.get("/api/users/" + _id)
-  },
-
-  getUserByEmail: function (email) {
-    return axios.get("/api/users/email/" + email)
-  },
-
-  addToFavorites: function (name, id) {
-    // console.log("api: " + name + ":" + id)
-    return axios.put("/api/users/favorites/" + name, id);
-  },
-
-  getUserFavorites: function (name) {
-    // console.log("this is api for getuserfavorites()")
-    // console.log(name);
-    return axios.get("/api/users/favorites/" + name);
+  addToFavorites: function (id, data) {
+    return axios.put("/api/users/favorites/" + id, data);
   },
 
   deleteUser: function (id) {
     return axios.delete("/api/users/" + id);
   },
 
- 
+  //------- is this necessary----
+  updateUserByEmail: function (email, data) {
+    return axios.put("/api/users/email/" + email, data)
+  },
+  //------------------------------------
 
 
-  // route /api/pictures
+  // ========= route /api/pictures
+
+  removeOnePicture: function (id, data) {
+    return axios.put('/api/pictures/deleteone/' + id , data)
+  },
+
   getAllPictures: function () {
     return axios.get("/api/pictures");
   },
 
-  // uploadFiles: function(data) {
-  //   console.log("api")
-  //   console.log(data)
-  //   return axios.post("/api/pictures", data)
-  // },
+  removeAllPictures: function (id) {
+    console.log("remove all")
+    return axios.delete('/api/pictures/deleteall/' + id)
+  },
+  
+  addPicture: function (id, data) {
+    return axios.post('/api/pictures/'+ id, data)
+  },
 
-  uploadFiles: function (file) {
 
-    // TODO
-    // multiple files are much more difficult. let's keep the user doing one at a time
-    // might want to change all references to 'uploadFiles' to 'uploadFile'
+  // =========== route /api/comments
 
-    console.log(file);
-    const formData = new FormData();
-    formData.append('image', file, file.name);
+  addPictureNote: function (data) {
+    return axios.post('/api/comments', data);
+  },
 
-    return axios.post("/api/pictures", formData, {
-      onUploadProgress: progressEvent => {
-        console.log("upload progress: " + Math.round((progressEvent.loaded / progressEvent.total) * 100) + "%")
+
+  // ========== route /api/aws
+
+  presignedURL: function (id, data) {
+    return axios.post("/api/aws/presignedurl/" + id, data);
+  },
+
+  uploadToAWS: function (url, file, type) {
+    return axios.put(url, file, {
+      headers: {
+        'Content-Type': type
       }
     })
   },
 
 
-  updatePicture: function (id, data) {
-    return axios.put("/api/pictures/" + id, data)
-  },
+  // ========== route /api/display
 
-  removeAllPictures: function () {
-    return axios.delete('/api/pictures')
-  },
-
-  removeOnePicture: function (id) {
-    return axios.delete('/api/pictures/' + id)
-  },
+  updateDisplayPicture: function (id, data) {
+    return axios.put("/api/display/" + id, data)
+ },
 
 
 
-  // route /api/comments
 
-  addPictureNote: function (data) {
-    console.log("api for add note")
 
-    console.log(data)
-    return axios.post('/api/comments', data);
-  },
 
+
+
+//======== Extras! ================
+
+// getUserByEmail: function (email) {
+//   return axios.get("/api/users/email/" + email)
+// },
+
+//  updatePicture: function (id, data) {
+//   return axios.put("/api/pictures/" + id, data)
+// },
+
+//  getOnlineUsers: function () {
+//   return axios.get("/api/users/online");
+// },
+
+
+
+
+
+
+
+
+
+
+
+  // addToDisplayPictures: function (data) {
+  //   // console.log("api")
+  //   // console.log(data)
+  //   return axios.post("/api/display", data)
+  // },
+
+  // getAllDisplayPictures: function () {
+  //   return axios.get("/api/display")
+  // },
+
+
+  // getSpecificUserDisplayPictures: function (userId) {
+  //   return axios.get("/api/display/" + userId)
+  // },
+
+  // emptySpecificDisplayPictures: function (userId) {
+  //   return axios.delete("/api/display/" + userId);
+  // },
 
   
 
-
-  // route /api/display
-
-  addToDisplayPictures: function (data) {
-    // console.log("api")
-    // console.log(data)
-    return axios.post("/api/display", data)
-  },
-
-
-  getAllDisplayPictures: function () {
-    return axios.get("/api/display")
-  },
-
-
-  getSpecificUserDisplayPictures: function (userId) {
-    return axios.get("/api/display/" + userId)
-  },
-
-  emptySpecificDisplayPictures: function (userId) {
-    return axios.delete("/api/display/" + userId);
-  },
-
-
-  updateDisplayPicture: function (id, data) {
-   
-    return axios.put("/api/display/" + id, data)
-  },
+//   addRemoveFavorite: function (id, data) {
+//     return axios.put("/api/display/favorite/" + id, data)
+//  },
 
   // createManyDisplayPictures: function (data) {
   //   return axios.post("/api/display/many", data)
   // },
-
-  createManyDisplayPictures: function (data) {
-    return axios.post("/api/display/many", data)
-  },
 
 
 

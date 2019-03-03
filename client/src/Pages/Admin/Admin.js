@@ -65,7 +65,12 @@ class Admin extends Component {
     removeMenu: true,
     removeAllPic: false,
     removeSelectedPic: false,
-    // confirmSelected: false,
+    confirmSelected: false,
+    pictureToDelete: "",
+    awsKeyToDelete: "",
+    tempImageUrl: "",
+  
+
 
     allPictures: [],
 
@@ -150,7 +155,7 @@ class Admin extends Component {
 
     API.addUser(newUser)
       .then((res) => {
-        // console.log("added new user to database")
+        console.log("added new user to database")
         // console.log(res.data)
         this.setState({
           name: "",
@@ -183,25 +188,7 @@ class Admin extends Component {
       .catch(error => {
         console.log(error)
       });
-
-    // API.getOnlineUsers()
-    //   .then(res => {
-    //     console.log("all online users info")
-    //     console.log(res.data)
-
-    //     if (res.data === null) {
-    //       console.log("no online users")
-    //     } else {
-    //       this.setState({
-    //         // usersView: true,
-    //         onlineUsers: res.data
-    //       })
-    //     }
-
-    //   })
-    //   .catch(error => {
-    //     console.log(error)
-    //   });
+  
   };
 
   getAllUsers = () => {
@@ -227,24 +214,32 @@ class Admin extends Component {
   };
 
 
-  // opens a modal to confirm before deleting a picture 
-  // confirmSelectedPicDelete = () => {
-  //   console.log("confrim to delete pic")
-  //   this.setState({
-  //     confirmSelected: true,
-  //   })
-  // };
+  preDeleteSelectedPic = (id, awsKey, imageUrl) => {
+    console.log("pre delete selected" + id);
+    console.log("awskey: " + awsKey)
 
-  // is triggered from the modal and removes the picture
-  selectPicDelete = (id) => {
-    // console.log("this is the function to remove the picture: " + id)
+    this.setState({
+      confirmSelected: true,
+      pictureToDelete: id,
+      awsKeyToDelete: awsKey,
+      tempImageUrl: imageUrl,
+    })
+  };
 
-    API.removeOnePicture(id)
+
+  selectPicDelete = () => {
+    console.log("this is the function to remove the picture: " )
+    let data = {
+      awsKey: this.state.awsKeyToDelete,
+      user_id: this.state._id,
+    }
+
+    API.removeOnePicture(this.state.pictureToDelete, data)
       .then((res) => {
         // console.log("removed a pictures")
         // console.log(res.data)
         this.setState({
-          // confirmSelected: false,
+          confirmSelected: false,
           value: "",
 
         })
@@ -267,6 +262,7 @@ class Admin extends Component {
       })
       .catch(err => console.log(err));
   };
+  
 
   // this give the user the opportunity to confirm delete all
   menuDeleteAll = () => {
@@ -284,14 +280,15 @@ class Admin extends Component {
       removeAllPic: false,
       removeSelectedPic: false,
       removeMenu: true,
+      confirmSelected: false,
     })
 
   };
 
   // function to remove all pictures
   removeAllPictures = () => {
-
-    API.removeAllPictures()
+    console.log("clicked delete all")
+    API.removeAllPictures(this.state._id)
       .then((res) => {
         // console.log("removed all pictures")
         // console.log(res.data)
@@ -542,9 +539,6 @@ class Admin extends Component {
 
 
 
-
-
-
   render = () => {
 
     // const {
@@ -718,9 +712,10 @@ class Admin extends Component {
 
 
                 pictures={this.state.getAllPicturesToRemove}
-                // confirmSelected={this.state.confirmSelected}
+                confirmSelected={this.state.confirmSelected}
                 selectPicDelete={this.selectPicDelete}
-                // confirmSelectedPicDelete={this.confirmSelectedPicDelete}
+                preDeleteSelectedPic={this.preDeleteSelectedPic}
+                tempImageUrl={this.state.tempImageUrl}
 
               />
             ) : (

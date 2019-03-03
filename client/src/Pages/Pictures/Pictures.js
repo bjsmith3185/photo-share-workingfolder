@@ -47,7 +47,7 @@ class Pictures extends Component {
   componentDidMount() {
     this.getUserInfo();
     this.checkIfUserExists();
-    this.createDisplayPicturesAll();
+    this.displayAllPictures();
   };
 
   onChange = event => {
@@ -57,14 +57,14 @@ class Pictures extends Component {
   signOut = () => {
     // console.log("signing out")
     let _id = sessionStorage.getItem("_id");
-  
+
     API.signOutUser(_id)
-    .then(res => {
-      console.log("signed out")
-    })
-    .catch(error => {
-      console.log(error)
-    });
+      .then(res => {
+        console.log("signed out")
+      })
+      .catch(error => {
+        console.log(error)
+      });
     sessionStorage.clear();
     this.props.history.push(ROUTES.LANDING);
   };
@@ -74,8 +74,6 @@ class Pictures extends Component {
 
     API.getUser(_id)
       .then(res => {
-        // console.log("users info")
-        // console.log(res.data)
 
         if (res.data === null) {
           this.setState({
@@ -102,7 +100,6 @@ class Pictures extends Component {
   };
 
   getUserInfo = () => {
-
     let email = sessionStorage.getItem("email")
     let name = sessionStorage.getItem("name");
     let _id = sessionStorage.getItem("_id");
@@ -114,227 +111,50 @@ class Pictures extends Component {
     })
   };
 
-  createDisplayPicturesAll = () => {
-    let name = sessionStorage.getItem("name");
-    let userId = sessionStorage.getItem("_id");
-    // let name = this.state.name;
-    // let userId = this.state._id;
-    let all = [];
-    let fav = [];
+  displayAllPictures = () => {
 
-
-    API.emptySpecificDisplayPictures(userId)
+    API.getdisplayPicturesAll(sessionStorage.getItem("_id"))
       .then(res => {
-        // console.log(`user display pictures emptied`)
-
-        API.getAllPictures()
-          .then(res => {
-            // console.log("$$$$$$$$$$$$$ all pictures")
-            // console.log(res.data)
-            if (res.data.length === 0) {
-              console.log("no pictures to display")
-              return;
-            }
-
-            for (var i = 0; i < res.data.length; i++) {
-              all.push(res.data[i]._id);
-            }
-            // console.log(all);
-            //------------------------------
-            API.getUserFavorites(name)
-              .then(res => {
-                fav = res.data.favorites;
-                // console.log(fav.length)
-
-                if (fav.length === 0) {
-                  console.log("no favs saved for " + name)
-                  let allPics = []
-                  for (var g = 0; g < all.length; g++) {
-                    let noFav = {
-                      userId: userId,
-                      picture: all[g],
-                    }
-                    allPics.push(noFav)
-                    if (g === all.length - 1) {
-                      API.createManyDisplayPictures(allPics)
-                        .then(res => {
-                          // console.log("@@@@@@@")
-                          // console.log(res.data)
-                          API.getSpecificUserDisplayPictures(userId)
-                            .then(res => {
-                              // console.log("getting pictures to display")
-                              // console.log(res.data); // this is populated correctly
-
-                              this.setState({
-                                displayPictures: res.data,
-                                showAllPictures: true,
-                              })
-                            })
-                            .catch(err => console.log(err));
-                        })
-                        .catch(err => console.log(err));
-                    }
-                  }
-
-                } else {
-                  let mixedArray = [];
-
-                  for (var i = 0; i < all.length; i++) {
-                    let data = {
-                      userId: userId,
-                      picture: all[i],
-                      showRed: false,
-                    };
-
-                    for (var k = 0; k < fav.length; k++) {
-
-                      if (all[i] === fav[k]) {
-                        data = {
-                          userId: userId,
-                          picture: all[i],
-                          showRed: true,
-                        }
-                      }
-                    }
-                    mixedArray.push(data);
-                    if (i === all.length - 1) {
-                      API.createManyDisplayPictures(mixedArray)
-                        .then(res => {
-                          API.getSpecificUserDisplayPictures(userId)
-                            .then(res => {
-                              // console.log("getting pictures to display")
-                              // console.log(res.data); // this is populated correctly
-
-                              this.setState({
-                                displayPictures: res.data,
-                                showAllPictures: true,
-                              })
-                            })
-                            .catch(err => console.log(err));
-                        })
-                        .catch(err => console.log(err));
-                    }
-                  }
-                }
-              })
-              .catch(err => console.log(err));
-          })
-          .catch(err => console.log(err));
-      })
-      .catch(err => console.log(err));
-  };
-
-  createdisplayPicturesFav = () => {
-    let name = sessionStorage.getItem("name");
-    let userId = sessionStorage.getItem("_id");
-
-    let fav = [];
-
-    API.emptySpecificDisplayPictures(userId)
-      .then(res => {
-        // console.log(`user display pictures emptied`)
-        // console.log(res.data)
-
-        API.getUserFavorites(name)
-          .then(res => {
-            fav = res.data.favorites;
-            // console.log("all favs")
-            // console.log(fav)
-
-            if (fav.length === 0) {
-              console.log("no favs to show");
-
-              this.setState({
-                displayPictures: fav
-              })
-
-              return;
-            }
-
-            let allFavs = [];
-            for (var g = 0; g < fav.length; g++) {
-              let data = {
-                userId: userId,
-                picture: fav[g],
-                showRed: true,
-              }
-              allFavs.push(data)
-              if (g === fav.length - 1) {
-                API.createManyDisplayPictures(allFavs)
-                  .then(res => {
-                    API.getSpecificUserDisplayPictures(userId)
-                      .then(res => {
-                        // console.log("getting pictures to display")
-                        // console.log(res.data); // this is populated correctly
-                        // this is correct above
-
-                        this.setState({
-                          displayPictures: res.data,
-                        })
-                      })
-                      .catch(err => console.log(err));
-                  })
-              }
-            }
-
-          })
-          .catch(err => console.log(err));
-
-
-      })
-      .catch(err => console.log(err));
-
-  };
-
-
-  viewAllPictures = () => {
-    // console.log("clicked view all pics")
-    this.createDisplayPicturesAll();
-    this.setState({
-          viewUpload: false,
-          showAllFavorites: false,
+        this.setState({
+          displayPictures: res.data,
           showAllPictures: true,
-          showUploadAlert: false
+        })
+      })
+      .catch(err => console.log(err));
+
+  };
+
+  displayFavPictures = () => {
+
+    API.getdisplayPicturesFav(sessionStorage.getItem("_id"))
+      .then(res => {
+        this.setState({
+          displayPictures: res.data,
+          showAllFavorites: true
         })
 
-    // if (this.state.showAllPictures === false) {
-    //   this.setState({
-    //     viewUpload: false,
-    //     showAllFavorites: false,
-    //     showAllPictures: true,
-    //   })
-    // } else {
-    //   this.setState({
-    //     viewUpload: false,
-    //     showAllFavorites: false,
-    //     showAllPictures: true,
-    //   })
-    // }
+      })
+  };
+
+  viewAllPictures = () => {
+
+    this.displayAllPictures();
+    this.setState({
+      viewUpload: false,
+      showAllFavorites: false,
+      showAllPictures: true,
+      showUploadAlert: false
+    })
   };
 
   viewMyFavorites = () => {
-    // console.log("clicked my favs")
-    this.createdisplayPicturesFav();
+    this.displayFavPictures();
     this.setState({
       viewUpload: false,
       showAllFavorites: true,
       showAllPictures: false,
       showUploadAlert: false
     })
-
-    // if (this.state.showAllFavorites === false) {
-    //   this.setState({
-    //     viewUpload: false,
-    //     showAllFavorites: true,
-    //     showAllPictures: false,
-    //   })
-    // } else {
-    //   this.setState({
-    //     showAllFavorites: false,
-    //     viewUpload: false,
-    //     showAllPictures: true,
-    //   })
-    // }
   };
 
   viewUpload = () => {
@@ -344,24 +164,10 @@ class Pictures extends Component {
       showAllPictures: false,
       showUploadAlert: false
     })
-    // if (this.state.viewUpload === false) {
-    //   this.setState({
-    //     viewUpload: true,
-    //     showAllFavorites: false,
-    //     showAllPictures: false,
-    //   })
-    // } else {
-    //   this.setState({
-    //     viewUpload: false,
-    //     showAllFavorites: false,
-    //     showAllPictures: true,
-    //   })
-    // }
   };
 
-
   viewSlideshow = () => {
-    
+
     if (this.state.isOpen === true) {
       this.setState({
         isOpen: false,
@@ -381,7 +187,6 @@ class Pictures extends Component {
     }
 
   };
-
 
   next = () => {
     // console.log("hello")
@@ -412,7 +217,6 @@ class Pictures extends Component {
 
   };
 
-  
   rotate = () => {
     let newRotation = this.state.rotation + 90;
     if (newRotation >= 360) {
@@ -423,56 +227,29 @@ class Pictures extends Component {
     })
   };
 
+  addToFavorites = (picture_id) => {
 
-  addToFavorites = (id, showRed, picture_id) => {
-    // id=displaypicture._id, picture_id = picture_id
     let userId = sessionStorage.getItem("_id");
-    // console.log("adding to fav")
-    // console.log(id);
-    // console.log(showRed)
-    // console.log(picture_id)
-    let updateHeart = {}
-
-    if (showRed) {
-      updateHeart = {
-        showRed: false
-      }
-    } else {
-      updateHeart = {
-        showRed: true
-      }
-    }
-
-    API.updateDisplayPicture(id, updateHeart)
-      .then(res => {
-        // console.log("is this updated")
-        // console.log(res.data)
-     
-        API.getSpecificUserDisplayPictures(userId)
-          .then(res => {
-            // console.log("getting pictures to display")
-            // console.log(res.data)
-            this.setState({
-              displayPictures: res.data,
-            })
-          })
-          .catch(err => console.log(err));
-      })
-      .catch(err => console.log(err));
 
     let data = {
-      favorites: picture_id
+      _id: picture_id,
+      fav: this.state.showAllFavorites,
+      all: this.state.showAllPictures,
     }
-    API.addToFavorites(this.state.name, data)
+
+    API.addToFavorites(userId, data)
       .then(res => {
+        this.setState({
+          displayPictures: res.data,
+        })
       })
       .catch(err => console.log(err));
-
   };
 
+
   viewPic = (id) => {
-    console.log(id)
-  }
+    // console.log(id)
+  };
 
   onSelect = (event) => {
     // console.log(event.target.files);
@@ -481,47 +258,60 @@ class Pictures extends Component {
       files: event.target.files,
       showUploadAlert: true,
     })
-  }
+  };
+
 
   uploadFiles = (event) => {
     event.preventDefault();
-
-    API.uploadFiles(this.state.files[0])
+    // console.log(this.state.files[0].type)
+    let type = {
+      type: this.state.files[0].type
+    }
+    API.presignedURL(this.state._id, type)
       .then(res => {
-        this.setState({
-         showUploadAlert: false
-        })
-        this.viewAllPictures();
+        // console.log("return with presigned url")
+        // console.log(res.data)
+        // console.log(res.data.key)
+        let key = res.data.key;
 
+        API.uploadToAWS(res.data.url, this.state.files[0], this.state.files[0].type)
+          .then(res => {
+            // console.log("uploaded to aws, now adding pictures document")
+
+            let data = {
+              name: this.state.files[0].name,
+              imageUrl: 'https://s3.amazonaws.com/photoshare-practice/' + key,
+              awsKey: key,
+            }
+
+            API.addPicture(this.state._id, data)
+              .then(res => {
+                // console.log("added a new picture collection")
+                // console.log(res.data)
+                this.viewAllPictures();
+              })
+              .catch(err => console.log(err));
+          })
+          .catch(err => console.log(err));
       })
       .catch(err => console.log(err));
   };
 
   seeNoteInput = (id, status) => {
     let userId = sessionStorage.getItem("_id");
-    let newStatus = {};
-
-    if (status) {
-      newStatus = {
-        openTextBox: false,
-      }
-    } else {
-      newStatus = {
-        openTextBox: true,
-      }
+    let newData = {
+      openTextBox: status,
+      userId: userId,
     }
 
-    API.updateDisplayPicture(id, newStatus)
+    API.updateDisplayPicture(id, newData)
       .then(res => {
-        // console.log("return from openTextBox")
-        API.getSpecificUserDisplayPictures(userId)
-          .then(res => {
-            // console.log("getting pictures to display")
-            this.setState({
-              displayPictures: res.data,
-            })
-          })
-          .catch(err => console.log(err));
+        console.log("return from updating display pics")
+        console.log(res.data)
+
+        this.setState({
+          displayPictures: res.data,
+        })
       })
       .catch(err => console.log(err));
   };
@@ -530,36 +320,23 @@ class Pictures extends Component {
     let userId = sessionStorage.getItem("_id");
 
     let data = {
-      author: this.state._id,
+      user_id: userId,
       text: this.state.note,
       picture_id: picture_id,
-    }
-
-    let newStatus = {
-      openTextBox: false,
+      favView: this.state.showAllFavorites,
     }
 
     API.addPictureNote(data)
       .then(res => {
-        API.updateDisplayPicture(display_id, newStatus)
-          .then(res => {
 
-            API.getSpecificUserDisplayPictures(userId)
-              .then(res => {
-                // console.log("getting pictures to display")
-                this.setState({
-                  displayPictures: res.data,
-                  note: "",
-                })
-              })
-              .catch(err => console.log(err));
-          })
-          .catch(err => console.log(err));
+        this.setState({
+          displayPictures: res.data,
+          note: "",
+        })
       })
       .catch(err => console.log(err));
-
   };
-
+ 
 
   render = () => {
 
@@ -578,8 +355,8 @@ class Pictures extends Component {
             />
 
             <UserIdBar name={this.state.name} />
-          <div className="picture-page-header text-center">
-          Picture Page
+            <div className="picture-page-header text-center">
+              Picture Page
           </div>
             {/* <br /> */}
             <PictureNavbar

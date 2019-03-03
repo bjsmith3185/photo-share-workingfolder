@@ -1,12 +1,13 @@
 
-Heroku deployment for demo: powerful-eyrie-82524
+Heroku deployment for demo: photoshare-aws-practice
 
 database: pictureshare
 collections: users, pictures, comments, displayPictures(for each user)
 
-TODO
+AWS s3 bucket: photoshare-practice
 
-*** Update signup/login email to lowercase, password to (string, lowercase would not allow for security)
+
+TODO
 
 
 *** Image box

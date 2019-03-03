@@ -70,17 +70,8 @@ class SignIn extends Component {
       password: this.state.password.toString()
     }
 
-    // console.log(this.state.email.toLowerCase())
-    // console.log(data)
-    // lowercase
     API.login(this.state.email.toLowerCase(), data)
       .then(res => {
-        // console.log(res.data)
-
-        // this.setState({
-        //   // email: "",
-        //   password: "",
-        // })
 
         if (res.data === null) {
           this.setState({

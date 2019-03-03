@@ -1,0 +1,67 @@
+
+
+Problems,
+
+error when no pics were there and the first was uploaded
+xhr.js:178 GET http://localhost:3000/api/system/displaypictures/all/5c76986f3912e74004a777dd 500 (Internal Server Error)
+
+
+
+
+issue  
+- when click heart to save fav the heart color does not change.
+
+
+    need to create a clear cache() for fav pics
+    clear at line 26 handleAddRemoveFav.js
+    
+
+
+
+
+Redis
+
+
+when shold i use redis?
+
+* check if user exists()
+
+* get all pictures
+
+* get favorites
+
+
+============
+
+redis stores
+
+user signin
+
+user_id + /allPics
+
+user_id + /favPics
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

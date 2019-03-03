@@ -52,24 +52,23 @@ module.exports = {
   },
 
   findByEmail: function (email) {
-    console.log("find by email controller" )
-    console.log(email)
+    // console.log("find by email controller" )
+    // console.log(email)
     return db.Users
       .findOne({ email: email })
   },
 
   create: function (data) {
-    console.log("!!!")
-    console.log(data)
-    // db.Users.createIndex( { favorites: 1 } )
-    return db.Users
+    // console.log("!!!")
+    // console.log(data)
+       return db.Users
       .create(data)
   },
 
 
   update: function (name, data) {
-    console.log("############3")
-    console.log(data)
+    // console.log("############3")
+    // console.log(data)
     return db.Users
       .findOneAndUpdate({ name: name }, data, { upsert: true })
   },
@@ -78,6 +77,7 @@ module.exports = {
       .findOneAndUpdate({ email: email }, data, { upsert: true })
   },
   updateById: function (id, data) {
+    console.log("this is the user id: " + id)
     return db.Users
       .findOneAndUpdate({ _id: id }, data, { upsert: true })
   },
@@ -112,5 +112,13 @@ module.exports = {
 
 
   },
+
+  findUserFavorites: function (id) {
+    // console.log("users controller, findUserFavorites" + id)
+    return db.Users
+    .findOne({ _id: id })
+    // .findOne({ name: "emmett smith" })
+    .select('favorites')
+  }
 };
 

@@ -2,7 +2,7 @@ const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
 const populateRoutes = require("./dbseed");
-const systemRoutes = require("../system");
+const systemRoutes = require("./system");
 
 
 // API Routes
@@ -13,6 +13,7 @@ router.use("/populate", populateRoutes);
 
 // System route
 router.use("/system", systemRoutes);
+
 
 // If no API routes are hit, send the React app
 router.use(function(req, res) {

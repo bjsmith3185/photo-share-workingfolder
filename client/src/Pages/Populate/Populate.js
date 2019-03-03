@@ -15,14 +15,14 @@ export default class PopulateUsersPage extends React.Component {
       .catch(err => console.log(err));
   };
 
-  removePictures = () => {
-    API.removePicures()
-    .then(res => {
-      console.log("removed all saved pictures")
-      console.log(res.data)
-    })
-    .catch(err => console.log(err));
-  }
+  // removePictures = () => {
+  //   API.removePicures()
+  //   .then(res => {
+  //     console.log("removed all saved pictures")
+  //     console.log(res.data)
+  //   })
+  //   .catch(err => console.log(err));
+  // }
 
   
   redirectStartPage = () => {
@@ -41,13 +41,6 @@ export default class PopulateUsersPage extends React.Component {
         <br />
         <button onClick={this.populateUsers}>Populate Admin</button>
         <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <button onClick={this.removePictures}>Clear pictures</button>
         <br />
         <br />
         <br />
