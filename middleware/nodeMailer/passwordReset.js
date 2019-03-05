@@ -43,17 +43,17 @@ module.exports = {
         };
 
         // console.log(mailOptions)
-        // transporter.sendMail(mailOptions, function (error, info) {
-        //     if (error) {
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
 
-        //         console.log("it messed up....")
-        //         return console.log(error);
-        //     }
+                console.log("it messed up....")
+                return console.log(error);
+            }
 
-        //     console.log("Message sent: %s", info.messageId);
-        //     // console.log(info.accepted) // should show an array of emails that went thru
-        //     // console.log(info.response) // may show ok status?
-        // })
+            console.log("Message sent: %s", info.messageId);
+            // console.log(info.accepted) // should show an array of emails that went thru
+            // console.log(info.response) // may show ok status?
+        })
 
     }
 }

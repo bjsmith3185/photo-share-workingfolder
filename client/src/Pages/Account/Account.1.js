@@ -238,13 +238,11 @@ class Account extends Component {
               signOut={this.signOut}
             />
             <UserIdBar name={this.state.name} />
-
             <div className="account-title text-center">User Account Page</div>
-            <hr className="account-line"/>
 
             <div className="account-text text-center">
-             
-                <button className="account-info-btn" onClick={this.viewUserInfo}>View My Account</button>
+              Click to view your account information.
+                <button className="account-info-btn" onClick={this.viewUserInfo}>User Info.</button>
             </div>
 
             {this.state.showUserInfoArea ? (

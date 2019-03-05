@@ -42,6 +42,7 @@ class Pictures extends Component {
     note: "",
     showNoteInput: false,
 
+
   };
 
   componentDidMount() {
@@ -352,6 +353,7 @@ class Pictures extends Component {
               authUser={this.state.authUser}
               admin={this.state.admin}
               signOut={this.signOut}
+            
             />
 
             <UserIdBar name={this.state.name} />

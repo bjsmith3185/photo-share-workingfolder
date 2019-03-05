@@ -2,27 +2,29 @@
 TODOs
 
 
-** Welcome Page
-    - logo or something
-    - random internet images?
-
-** Signin Page
-    - logo or some image
-
-
 ** Home Page
     - randomly show a saved image on an interval
 
 
--------------------------------------
 
-Responsive pages
+navbar dropdown
 
-* Welcome: good
-* Sign In: good
-* Forgot Password: good
-* Home:
-    - Navbar: working
+Home
+
+Pictures
+    - All Pictures
+    - My Favorites
+    - Upload Picture
+
+My profile
+
+Admin
+    - Add New User
+    - View All Users
+    - Modify User
+    - Delete User
+    - Delete Pictures
+    
 
 
 

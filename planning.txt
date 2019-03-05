@@ -31,7 +31,21 @@ TODO
     - add a function to randomly select a security question to display and answer.
 
 
+- styling for:
 
+    
+    * Pictures page
+        - create a fixed size for the pic box
+
+    * My Profile page
+        - center the page title
+        - details on what the page is used for
+
+    * Admin page
+        - look into how to make the title a different color
+        - each tab needs some styling
+
+    
 
 
 
@@ -41,6 +55,9 @@ TODO
     * div to show the screen the user is currently on
 
     
+- add better text to the home page
+- add a confirm or something when deleting users or pictures
+
 
 
 -----------------------------

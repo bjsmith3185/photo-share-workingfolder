@@ -1,16 +1,18 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import API from "../../utils/API";
-import * as ROUTES from "../../constants/routes";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import API from '../../utils/API';
+import * as ROUTES from '../../constants/routes';
 import "./Home.css";
-import Navigation from "../../components/Navigation";
-import UserIdBar from "../../components/UserIdBar";
+import Navigation from '../../components/Navigation';
+import UserIdBar from '../../components/UserIdBar';
 
 // import { identity } from 'rxjs';
 // import PictureList from '../../components/PictureList';
 // import PictureNavbar from '../../components/PictureNavbar';
 
+
 class HomePage extends Component {
+
   state = {
     name: "",
     email: "",
@@ -18,14 +20,19 @@ class HomePage extends Component {
 
     loggedIn: false,
     authUser: false,
-    admin: false
+    admin: false,
+
+
   };
 
   componentDidMount() {
     this.checkIfUserExists();
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+
+  }
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -40,14 +47,15 @@ class HomePage extends Component {
 
     API.signOutUser(_id)
       .then(res => {
-        console.log("signed out");
+        console.log("signed out")
       })
       .catch(error => {
-        console.log(error);
+        console.log(error)
       });
     sessionStorage.clear();
     this.props.history.push(ROUTES.LANDING);
   };
+
 
   checkIfUserExists = () => {
     let _id = sessionStorage.getItem("_id");
@@ -60,8 +68,8 @@ class HomePage extends Component {
         if (res.data === null) {
           this.setState({
             loggedIn: false,
-            authUser: false
-          });
+            authUser: false,
+          })
         } else {
           sessionStorage.setItem("name", res.data.name);
           sessionStorage.setItem("email", res.data.email);
@@ -71,54 +79,60 @@ class HomePage extends Component {
             email: res.data.email,
             _id: res.data._id,
             authUser: true,
-            admin: res.data.admin
-          });
+            admin: res.data.admin,
+          })
         }
       })
       .catch(error => {
-        console.log(error);
+        console.log(error)
       });
+
   };
 
+
+
   render = () => {
+
     return (
-      <div className="text-center">
+
+      <div>
         <Navigation
           authUser={this.state.authUser}
           admin={this.state.admin}
           signOut={this.signOut}
         />
         <UserIdBar name={this.state.name} />
-
-        <div className="home-title text-center">Photo-Share</div>
+        <h1 className="home-title text-center">Welcome to the Picture-Share App!</h1>
 
         {this.state.loggedIn ? (
-          <div className="container-fluid text-center">
+          <div>
             <div className="home-title-name text-center">
-              Hello {this.state.name}.
-            </div>
-
-            <div className="home-body">
-              <Link className="home-pic-link" to={ROUTES.PICTURES}>
-                View Pictures
-              </Link>
-              <p className="home-body-p">
-                Select other options from the menu at the top
-              </p>
+              Good to see you {this.state.name}.
             </div>
           </div>
         ) : (
-          <div className="home-signin-link">
-            <div>
-              {" "}
-              <Link to={ROUTES.SIGNIN}>Sign In</Link>{" "}
+
+            <div className="home-signin-link">
+              <div> <Link to={ROUTES.SIGNIN}>Sign In</Link> </div>
             </div>
-          </div>
-        )}
+
+          )}
+
+
+
+
       </div>
+
     );
   };
-}
+};
+
+
+
+
+
+
+
 
 // export default withAuthorization(condition)(HomePage);
 export default HomePage;
