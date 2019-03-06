@@ -1,8 +1,8 @@
 # photo-share-workingfolder
 
-Beginning to make this app mobile responsive. I know, should have started it that way.
+Github repo: photo-share-workingfolder
+Heroku: NONE
 
-The heroku deployed link is https://photoshare-aws-practice.herokuapp.com/   , https://photoshare-aws-practice.herokuapp.com/ 
 
 Technologies used:
     HTML, CSS, React.js, JavaScript, Node.js, Express.js, MongoDB, AWS-s3, redis, nodemailer, GitHub, Heroku.
