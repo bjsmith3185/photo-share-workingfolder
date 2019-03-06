@@ -116,6 +116,8 @@ class Pictures extends Component {
 
     API.getdisplayPicturesAll(sessionStorage.getItem("_id"))
       .then(res => {
+        // console.log("all results")
+        // console.log(res.data)
         this.setState({
           displayPictures: res.data,
           showAllPictures: true,
@@ -129,6 +131,8 @@ class Pictures extends Component {
 
     API.getdisplayPicturesFav(sessionStorage.getItem("_id"))
       .then(res => {
+        // console.log("fav results")
+        // console.log(res.data)
         this.setState({
           displayPictures: res.data,
           showAllFavorites: true
